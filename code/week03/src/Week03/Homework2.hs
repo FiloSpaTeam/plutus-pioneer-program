@@ -116,7 +116,7 @@ grab = do
                 Just d  -> d <= now
 
 endpoints :: Contract () VestingSchema Text ()
-endpoints = (give' + grab') >> endpoints
+endpoints = (give' `select` grab') >> endpoints
   where
     give' = endpoint @"give" >>= give
     grab' = endpoint @"grab" >>  grab
